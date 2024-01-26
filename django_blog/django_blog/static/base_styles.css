@@ -1,0 +1,57 @@
+body {
+    background-color: #F0F0F0;
+}
+
+header {
+    background-color: #303B44;
+    height: 50px;
+    color: #F0F0F0;
+    position: fixed;
+    width: 100%;
+}
+
+header h2 {
+    display: inline;
+    padding-left: 2%;
+}
+
+header .login {
+    display: inline;
+    padding-left: 73%;
+}
+
+header .login-icon {
+    width: 30px;
+    height: 46px;
+}
+
+header .signup {
+    display: inline;
+    padding-left: 1%;
+}
+
+header .signup-icon {
+    width: 37px;
+    height: 47px;
+}
+
+header .profile {
+    display: inline;
+    padding-left: 73%;
+}
+
+header .profile-icon {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 5px;
+}
+
+header .logout {
+    display: inline;
+    padding-left: 2%;
+}
+
+header .logout-icon {
+    width: 30px;
+    height: 46px;
+}

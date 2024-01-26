@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'base_styles.css' %}">
+    {% block css_links %}
+    {% endblock %}
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+</head>
+<body>
+<header>
+    <h2>Django Blog</h2>
+    {% if user.is_authenticated %}
+    <h4 class="profile">Profile</h4>
+    <img src="{% static 'img/profile_icon.png' %}" class="profile-icon">
+    <h5 class="logout">Log Out</h5>
+    <img src="{% static 'img/logout_icon.png' %}" class="logout-icon">
+    {% else %}
+    <h4 class="login">Log In</h4>
+    <img src="{% static 'img/login_icon.png' %}" class="login-icon">
+    <h4 class="signup">Sign Up</h4>
+    <img src="{% static 'img/signup_icon.png' %}" class="signup-icon">
+    {% endif %}
+</header>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
