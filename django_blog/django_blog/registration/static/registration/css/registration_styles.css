@@ -1,0 +1,45 @@
+.registration {
+    padding-top: 3%;
+    text-align: center;
+}
+
+form {
+    font-size: 18px;
+}
+
+form label.input-label {
+    width: 43%;
+    text-align: right;
+    padding-top: 10px;
+}
+
+form input {
+    margin-left: 5px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+form button {
+    width: 5%;
+    margin-left: 47.5%;
+    margin-top: 12px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+p a {
+    text-decoration: none;
+}
+
+form label.error {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}

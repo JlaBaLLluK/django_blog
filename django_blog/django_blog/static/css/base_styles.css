@@ -13,6 +13,7 @@ header {
 header h2 {
     display: inline;
     padding-left: 2%;
+    width: 71%;
 }
 
 header .login {
@@ -54,4 +55,17 @@ header .logout {
 header .logout-icon {
     width: 30px;
     height: 46px;
+}
+
+header a {
+    color: #F0F0F0;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #87CEEB;
+}
+
+header a.homepage-link:hover {
+    color: #F0F0F0;
 }
