@@ -13,6 +13,6 @@ class RegistrationView(View):
     def post(self, request):
         form = RegistrationForm(request.POST)
         if not form.is_valid():
-            return render(request, self.template_name, {'form': form})
+            return render(request, self.template_name, {'form': form}, status=400)
 
         return render(request, self.template_name, {'form': RegistrationForm})
