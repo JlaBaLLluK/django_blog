@@ -1,0 +1,14 @@
+h1 {
+    padding-top: 3%;
+    text-align: center;
+}
+
+label {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+}
+
+label a {
+    text-decoration: none;
+}

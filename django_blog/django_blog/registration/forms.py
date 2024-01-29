@@ -1,5 +1,5 @@
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm, PasswordInput, CharField, TextInput, EmailInput
+from django.forms import ModelForm, PasswordInput, CharField, TextInput, EmailInput, Form
 
 from auth_user.models import AuthUser
 
@@ -31,3 +31,12 @@ class RegistrationForm(ModelForm):
                 'unique': 'This email is already taken!',
             }
         }
+
+
+class VerificationForm(Form):
+    digit_one = CharField(max_length=1, required=True, widget=TextInput(attrs={'class': 'digit_one'}))
+    digit_two = CharField(max_length=1, required=True, widget=TextInput(attrs={'class': 'digit_two'}))
+    digit_three = CharField(max_length=1, required=True, widget=TextInput(attrs={'class': 'digit_three'}))
+    digit_four = CharField(max_length=1, required=True, widget=TextInput(attrs={'class': 'digit_four'}))
+    digit_five = CharField(max_length=1, required=True, widget=TextInput(attrs={'class': 'digit_five'}))
+    digit_six = CharField(max_length=1, required=True, widget=TextInput(attrs={'class': 'digit_six'}))
