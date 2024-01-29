@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'authorization/css/login_styles.css' %}">
+{% endblock %}
+{% block title %}
+Log In
+{% endblock %}
+{% block content %}
+<h1 class="authorization">Authorization</h1>
+<form method="post">
+    {% for field in form %}
+        {% for error in field.errors %}
+            <label class="error">{{ error }}</label><br>
+        {% endfor %}
+    {% endfor %}
+    <label class="username-or-email">Username or email:</label> {{ form.username_or_email }}<br>
+    <label class="password">Password:</label> {{ form.password }}<br>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Log In</button>
+</form>
+<p>Don't have an account? <a href="{% url 'registration' %}">Create</a> it now!</p>
+{% endblock %}

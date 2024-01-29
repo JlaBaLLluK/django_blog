@@ -40,11 +40,11 @@
     </a>
     {% else %}
     <h4 class="login">
-        <a href="#" class="login-link">
+        <a href="{% url 'login' %}" class="login-link">
             Log In
         </a>
     </h4>
-    <a href="#" class="login-link">
+    <a href="{% url 'login' %}" class="login-link">
         <img src="{% static 'img/login_icon.png' %}" class="login-icon">
     </a>
     <h4 class="signup">
