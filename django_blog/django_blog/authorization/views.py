@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -18,11 +18,17 @@ class LoginView(View):
             return render(request, self.template_name, {'form': form}, status=400)
 
         username_or_email = form.cleaned_data.get('username_or_email')
-        password = form.cleaned_data.get('password')
         if '@' in username_or_email:
             user = AuthUser.objects.get(email=username_or_email)
         else:
-            user = authenticate(username=username_or_email, password=password)
+            user = AuthUser.objects.get(username=username_or_email)
 
         login(request, user)
+        return redirect('homepage')
+
+
+class LogoutView(View):
+    @staticmethod
+    def post(request):
+        logout(request)
         return redirect('homepage')

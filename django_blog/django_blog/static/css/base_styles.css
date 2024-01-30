@@ -47,12 +47,19 @@ header .profile-icon {
     margin-bottom: 5px;
 }
 
-header .logout {
+header form {
     display: inline;
-    padding-left: 2%;
 }
 
-header .logout-icon {
+header form button {
+    border: solid 0px black;
+    background-color: #303B44;
+    color: #F0F0F0;
+    font-size: 24px;
+    padding-left: 1%;
+}
+
+header form button img {
     width: 30px;
     height: 46px;
 }
@@ -62,7 +69,7 @@ header a {
     text-decoration: none;
 }
 
-header a:hover {
+header a:hover, header form button:hover {
     color: #87CEEB;
 }
 

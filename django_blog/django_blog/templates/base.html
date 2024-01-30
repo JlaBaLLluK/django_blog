@@ -23,21 +23,17 @@
     </h2>
     {% if user.is_authenticated %}
     <h4 class="profile">
-        <a class="profile-link">
+        <a href="#" class="profile-link">
             Profile
         </a>
     </h4>
-    <a class="profile-link">
+    <a href="#" class="profile-link">
         <img src="{% static 'img/profile_icon.png' %}" class="profile-icon">
     </a>
-    <h5 class="logout">
-        <a class="logout-link">
-            Log Out
-        </a>
-    </h5>
-    <a class="logout-link">
-        <img src="{% static 'img/logout_icon.png' %}" class="logout-icon">
-    </a>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Log Out <img src="{% static 'img/logout_icon.png' %}"></button>
+    </form>
     {% else %}
     <h4 class="login">
         <a href="{% url 'login' %}" class="login-link">
