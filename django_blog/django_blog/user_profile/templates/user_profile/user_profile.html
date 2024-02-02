@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'user_profile/css/user_profile_styles.css' %}">
+{% endblock %}
+{% block title %}
+{{ user.username }}
+{% endblock %}
+{% block content %}
+<h1 class="welcome">Welcome, {{ user.username }}!</h1>
+<ul>
+    <li><a href="{% url 'edit_profile_data' %}">Edit profile data</a>.</li>
+    <li><a href="">Write new post</a>.</li>
+    <li><a href="">Edit post</a>.</li>
+    <li><a href="">Delete profile</a>.</li>
+</ul>
+{% endblock %}

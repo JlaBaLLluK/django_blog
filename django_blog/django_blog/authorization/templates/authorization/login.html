@@ -8,7 +8,7 @@ Log In
 {% endblock %}
 {% block content %}
 <h1 class="authorization">Authorization</h1>
-<form method="post">
+<form method="post" class="login-form">
     {% for field in form %}
         {% for error in field.errors %}
             <label class="error">{{ error }}</label><br>
@@ -17,7 +17,7 @@ Log In
     <label class="username-or-email">Username or email:</label> {{ form.username_or_email }}<br>
     <label class="password">Password:</label> {{ form.password }}<br>
     {% csrf_token %}
-    <button type="submit" class="btn btn-success">Log In</button>
+    <button type="submit" class="btn btn-success login-button">Log In</button>
 </form>
 <p>Don't have an account? <a href="{% url 'registration' %}">Create</a> it now!</p>
 {% endblock %}

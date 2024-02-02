@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -24,7 +24,7 @@ class LoginView(View):
             user = AuthUser.objects.get(username=username_or_email)
 
         login(request, user)
-        return redirect('homepage')
+        return redirect('user_profile')
 
 
 class LogoutView(View):

@@ -29,7 +29,7 @@ class RegistrationView(View):
         return redirect('registration_confirm', pk=user.pk)
 
 
-class RegistrationConfirmationView(View):
+class RegistrationVerificationView(View):
     template_name = 'registration/registration_confirmation.html'
     verification_code = None
 
@@ -37,9 +37,9 @@ class RegistrationConfirmationView(View):
         if 'allow_visit_confirmation_page' not in request.session:
             raise Http404()
 
-        RegistrationConfirmationView.verification_code = str(random.randint(100000, 999999))
+        RegistrationVerificationView.verification_code = str(random.randint(100000, 999999))
         subject = "Confirm registration"
-        message = (f"Your verification code is {RegistrationConfirmationView.verification_code}. "
+        message = (f"Your verification code is {RegistrationVerificationView.verification_code}. "
                    f"Enter this code to finish your registration.")
         recipient_list = [AuthUser.objects.get(pk=pk).email]
         send_mail(subject, message, None, recipient_list)
@@ -51,7 +51,7 @@ class RegistrationConfirmationView(View):
             return render(request, self.template_name, {'form': form}, status=400)
 
         user_code = ''.join(form.cleaned_data.values())
-        if user_code != RegistrationConfirmationView.verification_code:
+        if user_code != RegistrationVerificationView.verification_code:
             return render(request, self.template_name, {'form': form, 'error': 'This code is invalid!'}, status=400)
 
         user = AuthUser.objects.get(pk=pk)

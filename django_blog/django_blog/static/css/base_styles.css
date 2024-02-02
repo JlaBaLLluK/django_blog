@@ -51,7 +51,7 @@ header form {
     display: inline;
 }
 
-header form button {
+header form button.logout-button {
     border: solid 0px black;
     background-color: #303B44;
     color: #F0F0F0;

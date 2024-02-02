@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'auth_user',
     'registration',
     'authorization',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Auth user model
 
 AUTH_USER_MODEL = 'auth_user.AuthUser'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'profile'

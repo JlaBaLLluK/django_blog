@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'user_profile/css/edit_profile_data_styles.css' %}">
+{% endblock %}
+{% block title %}
+{{ user.username }}
+{% endblock %}
+{% block content %}
+<h1>Edit profile data</h1>
+<form method="post">
+    {% for field in form %}
+        {% for error in field.errors %}
+            <label class="error">{{ error }}</label><br>
+        {% endfor %}
+    {% endfor %}
+    {% if errors %}
+    <label class="error">{{ errors }}</label><br>
+    {% endif %}
+    <label class="input-label">Username:</label> {{ form.username }}<br>
+    <label class="input-label">Email:</label> {{ form.email }}<br>
+    <label class="input-label">First name:</label> {{ form.first_name }}<br>
+    <label class="input-label">Last name:</label> {{ form.last_name }}<br>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success edit-data">Done</button>
+</form>
+{% endblock %}

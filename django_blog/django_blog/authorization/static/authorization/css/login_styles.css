@@ -3,7 +3,7 @@
     text-align: center;
 }
 
-form {
+.login-form {
     font-size: 18px;
 }
 
@@ -29,7 +29,7 @@ form input {
     font-size: 18px;
 }
 
-form button {
+.login-button {
     margin-left: 47.5%;
     margin-top: 12px;
     width: 75px;
