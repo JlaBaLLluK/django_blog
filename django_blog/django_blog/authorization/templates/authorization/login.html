@@ -20,5 +20,5 @@ Log In
     <button type="submit" class="btn btn-success login-button">Log In</button>
 </form>
 <label class="create-account">Don't have an account? <a href="{% url 'registration' %}">Create</a> it now!</label><br>
-<label class="forgot-password">Forgot your password? <a href="">Reset</a> it.</label>
+<label class="forgot-password">Forgot your password? <a href="{% url 'reset_password' %}">Reset</a> it.</label>
 {% endblock %}
