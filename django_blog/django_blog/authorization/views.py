@@ -23,8 +23,22 @@ class LoginView(View):
         else:
             user = AuthUser.objects.get(username=username_or_email)
 
+        if not user.is_active:
+            request.session['allow_visit_confirmation_page'] = True
+            return redirect('registration_verification', pk=user.pk)
+
         login(request, user)
         return redirect('user_profile')
+
+
+class ForgoPasswordView(View):
+    template_name = 'authorization/forgot_password.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        pass
 
 
 class LogoutView(View):

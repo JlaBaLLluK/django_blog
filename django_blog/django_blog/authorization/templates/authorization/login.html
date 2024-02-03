@@ -19,5 +19,6 @@ Log In
     {% csrf_token %}
     <button type="submit" class="btn btn-success login-button">Log In</button>
 </form>
-<p>Don't have an account? <a href="{% url 'registration' %}">Create</a> it now!</p>
+<label class="create-account">Don't have an account? <a href="{% url 'registration' %}">Create</a> it now!</label><br>
+<label class="forgot-password">Forgot your password? <a href="">Reset</a> it.</label>
 {% endblock %}

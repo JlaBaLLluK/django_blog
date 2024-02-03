@@ -35,12 +35,16 @@ form input {
     width: 75px;
 }
 
-p {
-    text-align: center;
-    font-size: 18px;
-    margin-top: 5px;
+label a {
+    text-decoration: none;
 }
 
-p a {
-    text-decoration: none;
+.create-account {
+    padding-top: 5px;
+}
+
+.forgot-password, .create-account {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
 }
