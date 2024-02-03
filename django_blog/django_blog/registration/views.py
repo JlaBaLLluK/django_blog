@@ -2,10 +2,10 @@ from django.core.mail import send_mail
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views import View
+import random
 
 from auth_user.models import AuthUser
 from registration.forms import RegistrationForm, VerificationForm
-import random
 
 
 class RegistrationView(View):
@@ -19,18 +19,13 @@ class RegistrationView(View):
         if not form.is_valid():
             return render(request, self.template_name, {'form': form}, status=400)
 
-        username = form.cleaned_data.get('username')
-        email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password')
-        user = AuthUser(username=username, email=email, is_active=False)
-        user.set_password(password)
-        user.save()
+        form.save()
         request.session['allow_visit_confirmation_page'] = True
-        return redirect('registration_confirm', pk=user.pk)
+        return redirect('registration_verification', AuthUser.objects.get(username=form.cleaned_data.get('username')).pk)
 
 
 class RegistrationVerificationView(View):
-    template_name = 'registration/registration_confirmation.html'
+    template_name = 'registration/registration_verification.html'
     verification_code = None
 
     def get(self, request, pk):
@@ -59,7 +54,7 @@ class RegistrationVerificationView(View):
         user.save()
         del request.session['allow_visit_confirmation_page']
         request.session['registration_success'] = True
-        return redirect('registration-successful')
+        return redirect('registration_successful')
 
 
 class RegistrationSuccessView(View):

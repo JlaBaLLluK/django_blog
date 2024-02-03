@@ -8,13 +8,6 @@ class RegistrationForm(ModelForm):
     password_confirm = CharField(required=True, max_length=255,
                                  widget=PasswordInput(attrs={'class': 'password-confirm-input'}))
 
-    def clean(self):
-        super().clean()
-        if self.cleaned_data.get('password') != self.cleaned_data.get('password_confirm'):
-            raise ValidationError({'password_confirm': ValidationError("Passwords must be same!")})
-
-        return self.cleaned_data
-
     class Meta:
         model = AuthUser
         fields = ['username', 'password', 'password_confirm', 'email']
@@ -31,6 +24,19 @@ class RegistrationForm(ModelForm):
                 'unique': 'This email is already taken!',
             }
         }
+
+    def clean(self):
+        super().clean()
+        if self.cleaned_data.get('password') != self.cleaned_data.get('password_confirm'):
+            raise ValidationError({'password_confirm': ValidationError("Passwords must be same!")})
+
+        return self.cleaned_data
+
+    def save(self, commit=True):
+        AuthUser.objects.create_user(username=self.cleaned_data.get('username'),
+                                     email=self.cleaned_data.get('email'),
+                                     password=self.cleaned_data.get('password'),
+                                     is_active=False)
 
 
 class VerificationForm(Form):
