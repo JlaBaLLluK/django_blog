@@ -10,23 +10,23 @@ class LoginForm(Form):
     password = CharField(required=True, max_length=255, widget=PasswordInput)
 
     def clean(self):
-        super().clean()
+        cleaned_data = super().clean()
         user = self.validate_username_or_email()
-        if not user.check_password(self.cleaned_data.get('password')):
+        if not user.check_password(cleaned_data.get('password')):
             raise ValidationError({'password': ValidationError('This password is wrong!')})
 
-        return self.cleaned_data
+        return cleaned_data
 
     def validate_username_or_email(self):
         username_or_email = self.cleaned_data.get('username_or_email')
-        user = None
         try:
             if '@' in username_or_email:
                 user = AuthUser.objects.get(email=username_or_email)
             else:
                 user = AuthUser.objects.get(username=username_or_email)
         except ObjectDoesNotExist:
-            self.add_error('username_or_email', "User with such username or email doesn't exist!")
+            raise ValidationError(
+                {'username_or_email': ValidationError("User with such username or email doesn't exist!")})
 
         return user
 

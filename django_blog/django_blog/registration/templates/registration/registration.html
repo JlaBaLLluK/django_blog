@@ -1,25 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block css_links %}
-<link rel="stylesheet" href="{% static 'registration/css/registration_styles.css' %}">
+  <link rel="stylesheet" href="{% static 'registration/css/registration_styles.css' %}" />
 {% endblock %}
 {% block title %}
-User Registration
+  User Registration
 {% endblock %}
 {% block content %}
-<h1 class="registration">Registration</h1>
-<form method="post">
+  <h1 class="registration">Registration</h1>
+  <form method="post">
     {% for field in form %}
-        {% for error in field.errors %}
-            <label class="error">{{ error }}</label><br>
-        {% endfor %}
+      {% for error in field.errors %}
+        <label class="error">{{ error }}</label><br />
+      {% endfor %}
     {% endfor %}
-    <label class="input-label">Username: </label>{{ form.username }}<br>
-    <label class="input-label">Password: </label>{{ form.password }}<br>
-    <label class="input-label">Password confirm: </label>{{ form.password_confirm }}<br>
-    <label class="input-label">Email: </label>{{ form.email }}<br>
+    <label class="input-label">Username:</label>{{ form.username }}<br />
+    <label class="input-label">Password:</label>{{ form.password }}<br />
+    <label class="input-label">Password confirm:</label>{{ form.password_confirm }}<br />
+    <label class="input-label">Email:</label>{{ form.email }}<br />
     {% csrf_token %}
     <button type="submit" class="btn btn-success">Submit</button>
-</form>
-<p>Already have an account? <a href="{% url 'login' %}">Log in</a> now!</p>
+  </form>
+  <p>
+    Already have an account? <a href="{% url 'login' %}">Log in</a> now!
+  </p>
 {% endblock %}

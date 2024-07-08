@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from django.views import View
 import random
 
-from auth_user.models import AuthUser
 from registration.forms import VerificationForm
 from user_profile.forms import EditProfileDataForm
 
@@ -25,22 +24,16 @@ class EditProfileDataView(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-        form = EditProfileDataForm(request.POST)
+        form = EditProfileDataForm(request.POST, instance=request.user)
         if not form.is_valid():
             return render(request, self.template_name, {'form': form}, status=400)
-
-        if not form.check_if_new_data_correct(request.user):
-            return render(request, self.template_name, {'form': form}, status=400)
-
-        user = AuthUser.objects.get(username=request.user.username)
-        user.username = form.cleaned_data.get('username')
-        user.first_name = form.cleaned_data.get('first_name')
-        user.last_name = form.cleaned_data.get('last_name')
-        user.save()
-        if user.email != form.cleaned_data.get('email'):
+        # TODO: FIX REDIRECT AFTER EMAIL CHANGE
+        #  (ALWAYS request.user.email == form.cleaned_data.get('email'), BUT AFTER SAVE IT CHANGES)
+        if request.user.email != form.cleaned_data.get('email'):
             request.session['new_email'] = form.cleaned_data.get('email')
             return redirect('email_update_verification')
 
+        form.save()
         return redirect('user_profile')
 
 
@@ -69,8 +62,7 @@ class EmailUpdateVerificationView(View):
         if user_code != EmailUpdateVerificationView.verification_code:
             return render(request, self.template_name, {'form': form, 'error': 'This code is invalid!'}, status=400)
 
-        user = AuthUser.objects.get(username=request.user.username)
-        user.email = request.session['new_email']
-        user.save()
+        request.user.email = request.session['new_email']
+        request.user.save()
         del request.session['new_email']
         return redirect('user_profile')
