@@ -24,16 +24,19 @@ class EditProfileDataView(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
+        old_email = request.user.email
         form = EditProfileDataForm(request.POST, instance=request.user)
         if not form.is_valid():
             return render(request, self.template_name, {'form': form}, status=400)
-        # TODO: FIX REDIRECT AFTER EMAIL CHANGE
-        #  (ALWAYS request.user.email == form.cleaned_data.get('email'), BUT AFTER SAVE IT CHANGES)
-        if request.user.email != form.cleaned_data.get('email'):
-            request.session['new_email'] = form.cleaned_data.get('email')
+
+        new_email = form.cleaned_data.get('email')
+        if old_email != new_email:
+            user = form.save(commit=False)
+            user.email = old_email
+            user.save()
+            request.session['new_email'] = new_email
             return redirect('email_update_verification')
 
-        form.save()
         return redirect('user_profile')
 
 
