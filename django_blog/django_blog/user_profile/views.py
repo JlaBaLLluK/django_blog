@@ -5,7 +5,7 @@ from django.views import View
 import random
 
 from registration.forms import VerificationForm
-from user_profile.forms import EditProfileDataForm
+from user_profile.forms import EditProfileDataForm, DeleteProfileForm
 
 
 class UserProfileView(View):
@@ -69,3 +69,18 @@ class EmailUpdateVerificationView(View):
         request.user.save()
         del request.session['new_email']
         return redirect('user_profile')
+
+
+class DeleteProfileView(View):
+    template_name = 'user_profile/delete_profile.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'form': DeleteProfileForm})
+
+    def post(self, request):
+        form = DeleteProfileForm(request.POST, user=request.user)
+        if not form.is_valid():
+            return render(request, self.template_name, {'form': form})
+
+        request.user.delete()
+        return redirect('homepage')
