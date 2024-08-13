@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+  <link rel="stylesheet" href="{% static 'registration/css/registration_verification_styles.css' %}" />
+{% endblock %}
+{% block title %}
+  Registration Confirm
+{% endblock %}
+{% block content %}
+  <h1 class="registration-confirm">Confirm registration</h1>
+  <label class="help-text">
+    Verification code was sent on your email. Enter it to finish registration.
+    <br />
+  </label>
+  <form method="post">
+    {% for field in form %}
+      {{ field }}
+    {% endfor %}
+    <br />
+    {% csrf_token %}
+    {% if error %}
+    <label class="error">{{ error }}</label>
+    {% endif %}
+    <button type="submit" class="btn btn-success">Done</button>
+  </form>
+  <label class="check-email-text">Didn't receive verification code? Check if your email is correct.</label>
+  <label class="resend-code"><a href="">Resend</a> code.</label>
+{% endblock %}

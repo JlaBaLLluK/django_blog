@@ -1,0 +1,21 @@
+.errors {
+    padding-left: 2%;
+    padding-top: 3%;
+    font-size: 20px;
+    color: red;
+}
+
+.welcome {
+    padding-left: 2%;
+    padding-top: 3%;
+}
+
+ul {
+    list-style: none;
+    font-size: 20px;
+    padding-left: 2%;
+}
+
+ul li a {
+    text-decoration: none;
+}

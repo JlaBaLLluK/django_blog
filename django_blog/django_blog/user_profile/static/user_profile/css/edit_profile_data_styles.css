@@ -1,0 +1,35 @@
+h1 {
+    padding-top: 3%;
+    text-align: center;
+}
+
+form {
+    font-size: 18px;
+}
+
+form label.input-label {
+    padding-top: 10px;
+    padding-left: 2%;
+    width: 43.5%;
+    text-align: right;
+}
+
+form input {
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.edit-data {
+    width: 4%;
+    margin-top: 12px;
+    margin-left: 48%;
+}
+
+form label.error {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
