@@ -7,4 +7,13 @@
 Django Blog
 {% endblock %}
 {% block content %}
+<div class="content">
+    {% for post in posts %}
+    <label class="author">{{ post.author }}</label>, <label class="date">{{ post.publish_date }}</label><br>
+    <label class="title">{{ post.title }}</label><br>
+    <div class="body">{{ post.body|truncatewords:100 }}</div><br>
+    <a href="#"><button>Read more</button></a>
+    <hr>
+    {% endfor %}
+</div>
 {% endblock %}

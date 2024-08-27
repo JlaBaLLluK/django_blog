@@ -10,7 +10,7 @@
 <h1 class="welcome">Welcome, {{ user.username }}!</h1>
 <ul>
     <li><a href="{% url 'edit_profile_data' %}">Edit profile data</a>.</li>
-    <li><a href="">Write new post</a>.</li>
+    <li><a href="{% url 'write_post' %}">Write new post</a>.</li>
     <li><a href="">Edit post</a>.</li>
     <li><a href="{% url 'delete_profile' %}">Delete profile</a>.</li>
 </ul>

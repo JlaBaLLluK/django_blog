@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'post/css/write_post_styles.css' %}">
+{% endblock %}
+{% block title %}
+Write post
+{% endblock %}
+{% block content %}
+<h2 class="write-post">Write post</h2>
+<form method="post">
+    {% for field in form %}
+    {% for error in field.errors %}
+    <label class="error">{{ error }}</label><br/>
+    {% endfor %}
+    {% endfor %}
+    <label class="input-label">Post title:</label>{{ form.title }}<br/>
+    <label class="input-label">Post body:</label>{{ form.body }}<br/>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success submit-post">Submit</button>
+</form>
+{% endblock %}
