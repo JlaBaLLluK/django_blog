@@ -19,7 +19,7 @@ div button {
     border-radius: 10px;
     background-color: #303B44;
     color: #F0F0F0;
-    border: none;
+    border-color: #303B44;
     width: 6%;
     height: 35px;
     font-size: 20px;
@@ -27,5 +27,6 @@ div button {
 }
 
 div button:hover {
-    color: #87CEEB;
+    background-color: #F0F0F0;
+    color: #303B44;
 }
