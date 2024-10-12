@@ -18,10 +18,10 @@ services:
     depends_on:
       postgres:
         condition: service_started
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/django_blog_db
     volumes:
       - .:/app
+    environment:
+      POSTGRES_HOST: postgres
 
 volumes:
   postgres_data:
