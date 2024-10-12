@@ -1,16 +1,11 @@
 from django.contrib.auth.hashers import check_password
 from django.core.exceptions import ValidationError
-from django.core.management.commands import check
-from django.forms import CharField, EmailField, ModelForm, Form, PasswordInput
+from django.forms import CharField, ModelForm, Form, PasswordInput
 
 from auth_user.models import AuthUser
 
 
 class EditProfileDataForm(ModelForm):
-    username = CharField(max_length=255, required=True, min_length=4)
-    email = EmailField(max_length=255, required=True)
-    first_name = CharField(max_length=255, required=False)
-    last_name = CharField(max_length=255, required=False)
 
     class Meta:
         model = AuthUser

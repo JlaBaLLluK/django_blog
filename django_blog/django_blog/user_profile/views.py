@@ -37,6 +37,7 @@ class EditProfileDataView(View):
             request.session['new_email'] = new_email
             return redirect('email_update_verification')
 
+        form.save()
         return redirect('user_profile')
 
 
