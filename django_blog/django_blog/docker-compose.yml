@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: db_password12345
+      POSTGRES_DB: djangoblog_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  django_blog:
+    build:
+      context: .
+    container_name: django_blog
+    ports:
+      - "8888:8000"
+    depends_on:
+      postgres:
+        condition: service_started
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/django_blog_db
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_data:
